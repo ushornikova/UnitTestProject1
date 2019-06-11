@@ -9,32 +9,21 @@ using NUnit.Framework;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Chrome;
 
-namespace UnitTestProject1
+
+namespace GoogleTestProject
 {
-    public class MyPage
+    [Test]
+    public void UlianaTest()
     {
-        [Test]
-        public void Ffff()
-        {
-            IWebDriver driver = new ChromeDriver(); //викликали хром
-            driver.Navigate().GoToUrl("http://google.com"); //вводимо урл
+        IWebDriver driver = new ChromeDriver();
+        driver.Navigate().GoToUrl("http://google.com");
 
-            /*
-            IWebElement element = driver.FindElement(By.XPath("//input[@name='q']"));
-            element.SendKeys("BrainStorm");
-            IWebElement button = driver.FindElement(By.XPath("//input[@name='btnK']"));
-            button.Submit();
-            */
-            MainPage mainPage = new MainPage(driver);           
+       MainPage mainPage = new MainPage(driver);
 
-            mainPage.SearchField.SendKeys("BrainStorm"); //шукаємо по слову
-            mainPage.SearchButton.Submit(); //натискаємо кнопку 
+        mainPage.Search("BrainStorm");
 
-            //mainPage.Search("BrainStorm");
-
-            IWebElement block = driver.FindElement(By.Id("rhs_block"));//шукаємо елемент, блок на сторнці
-            Assert.True(block.Displayed); //перевіряємо чи той елемент відображається
-            driver.Quit();//закриваємо бровзер
-        }
+        IWebElement block = driver.FindElement(By.Id("rhs_block"));
+        Assert.True(block.Displayed);
+        driver.Quit();
     }
 }
