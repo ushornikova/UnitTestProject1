@@ -12,18 +12,21 @@ using OpenQA.Selenium.Chrome;
 
 namespace GoogleTestProject
 {
-    [Test]
-    public void UlianaTest()
+    public class GooglePage
     {
-        IWebDriver driver = new ChromeDriver();
-        driver.Navigate().GoToUrl("http://google.com");
+        [Test]
+        public void UlianaTest()
+        {
+            IWebDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("http://google.com");
 
-       MainPage mainPage = new MainPage(driver);
+            MainPage mainPage = new MainPage(driver);
 
-        mainPage.Search("BrainStorm");
+            mainPage.Search("BrainStorm");
 
-        IWebElement block = driver.FindElement(By.Id("rhs_block"));
-        Assert.True(block.Displayed);
-        driver.Quit();
+            IWebElement block = driver.FindElement(By.Id("rhs_block"));
+            Assert.True(block.Displayed);
+            driver.Quit();
+        }
     }
 }
